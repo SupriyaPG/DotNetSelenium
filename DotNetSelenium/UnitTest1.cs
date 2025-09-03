@@ -33,7 +33,41 @@ namespace DotNetSelenium
 
             driver.Quit();
 
-            Assert.Pass();
+         //   Assert.Pass();
+        }
+
+        [Test]
+        public void websiteLoginTest()
+        {
+            /* IWebDriver driver = new ChromeDriver();
+             driver.Navigate().GoToUrl("http://eaapp.somee.com");
+             driver.Manage().Window.Maximize();
+             IWebElement linkText = driver.FindElement(By.LinkText("Login"));
+             linkText.Click();
+             IWebElement txtUserName = driver.FindElement(By.Name("UserName"));
+             txtUserName.SendKeys("admin");
+             IWebElement txtPassword = driver.FindElement(By.Name("Password"));
+             txtPassword.SendKeys("password");
+             IWebElement chkRememerMe = driver.FindElement(By.Id("RememberMe"));
+             chkRememerMe.Click();   
+
+             IWebElement btnLogin = driver.FindElement(By.Id("loginIn"));
+             //btnLogin.Click();
+             //or we can use
+             btnLogin.Submit();  */
+
+            //can reduse code by using
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://eaapp.somee.com");
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.LinkText("Login")).Click(); 
+            driver.FindElement(By.Name("UserName")).SendKeys("admin"); 
+            driver.FindElement(By.Name("Password")).SendKeys("password");
+            driver.FindElement(By.Id("RememberMe")).Click();
+            //driver.FindElement(By.Id("loginIn")).Click();
+            //or we can use
+            driver.FindElement(By.Id("loginIn")).Submit();
+
         }
     }
 }
