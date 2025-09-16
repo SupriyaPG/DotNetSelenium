@@ -68,6 +68,8 @@ namespace DotNetSelenium
             //or we can use
             driver.FindElement(By.Id("loginIn")).Submit();
 
+            driver.Quit();
+
         }
     }
 }
