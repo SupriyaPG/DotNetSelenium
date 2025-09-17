@@ -1,5 +1,7 @@
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Edge;
+using OpenQA.Selenium.Support.UI;
 
 namespace DotNetSelenium
 {
@@ -14,7 +16,7 @@ namespace DotNetSelenium
         public void Test1()
         {
             //Create a new instance of selenium Web driver
-            IWebDriver driver = new ChromeDriver();
+            IWebDriver driver = new EdgeDriver();
 
             //Navigate to the URL
             driver.Navigate().GoToUrl("https://www.google.com/");
@@ -33,35 +35,40 @@ namespace DotNetSelenium
 
             driver.Quit();
 
-         //   Assert.Pass();
+            //   Assert.Pass();
         }
 
         [Test]
         public void websiteLoginTest()
         {
-            /* IWebDriver driver = new ChromeDriver();
-             driver.Navigate().GoToUrl("http://eaapp.somee.com");
-             driver.Manage().Window.Maximize();
-             IWebElement linkText = driver.FindElement(By.LinkText("Login"));
-             linkText.Click();
-             IWebElement txtUserName = driver.FindElement(By.Name("UserName"));
-             txtUserName.SendKeys("admin");
-             IWebElement txtPassword = driver.FindElement(By.Name("Password"));
-             txtPassword.SendKeys("password");
-             IWebElement chkRememerMe = driver.FindElement(By.Id("RememberMe"));
-             chkRememerMe.Click();   
-
-             IWebElement btnLogin = driver.FindElement(By.Id("loginIn"));
-             //btnLogin.Click();
-             //or we can use
-             btnLogin.Submit();  */
-
-            //can reduse code by using
             IWebDriver driver = new ChromeDriver();
             driver.Navigate().GoToUrl("http://eaapp.somee.com");
             driver.Manage().Window.Maximize();
-            driver.FindElement(By.LinkText("Login")).Click(); 
-            driver.FindElement(By.Name("UserName")).SendKeys("admin"); 
+            IWebElement linkText = driver.FindElement(By.LinkText("Login")); //find element
+            linkText.Click(); //click element
+            IWebElement txtUserName = driver.FindElement(By.Name("UserName")); //find element
+            txtUserName.SendKeys("admin");  // send keys
+            IWebElement txtPassword = driver.FindElement(By.Name("Password"));
+            txtPassword.SendKeys("password");
+            IWebElement chkRememerMe = driver.FindElement(By.Id("RememberMe"));
+            chkRememerMe.Click();
+
+            IWebElement btnLogin = driver.FindElement(By.Id("loginIn"));
+            //btnLogin.Click();
+            //or we can use
+            btnLogin.Submit();
+            driver.Quit();
+
+        }
+
+        [Test]
+        public void websiteLoginTestReducedSizeCode()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://eaapp.somee.com");
+            driver.Manage().Window.Maximize();
+            driver.FindElement(By.LinkText("Login")).Click(); //find and click the element
+            driver.FindElement(By.Name("UserName")).SendKeys("admin"); //find and send keys
             driver.FindElement(By.Name("Password")).SendKeys("password");
             driver.FindElement(By.Id("RememberMe")).Click();
             //driver.FindElement(By.Id("loginIn")).Click();
@@ -69,7 +76,51 @@ namespace DotNetSelenium
             driver.FindElement(By.Id("loginIn")).Submit();
 
             driver.Quit();
+        }
 
+        [Test]
+        public void workingWithAdvancedControls()
+        {
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("https://automationintesting.com/selenium/testpage/");
+            driver.Manage().Window.Maximize();
+
+            SelectElement selectElement = new SelectElement(driver.FindElement(By.Id("gender")));
+            selectElement.SelectByText("Male");
+
+            //checking selected element
+            IWebElement webElement = selectElement.SelectedOption;
+            Console.WriteLine(webElement.Text);
+
+            SelectElement selectMultiElement = new SelectElement(driver.FindElement(By.Id("continent")));
+            selectMultiElement.SelectByValue("asia");
+            selectMultiElement.SelectByValue("north_america");
+
+            //checking selected options
+            IList<IWebElement> selectedOption = selectMultiElement.AllSelectedOptions;
+
+            foreach (var option in selectedOption)
+            {
+                Console.WriteLine(option.Text);
+            }
+
+
+        }
+
+        [Test]
+        public void loginLink()
+        {
+
+            IWebDriver driver = new ChromeDriver();
+            driver.Navigate().GoToUrl(" http://eaapp.somee.com/");
+            driver.Manage().Window.Maximize();
+
+            IWebElement loginlink = driver.FindElement(By.Id("loginLink"));
+            loginlink.Click();
+
+            //Instead of these 2 lines can use following 1 line which is used in a UnitTestUsingCustomMethod
+
+            //SeleniumCustomMethods.click(driver, By.Id("loginLink"));
         }
     }
 }
