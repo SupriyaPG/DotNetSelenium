@@ -1,3 +1,4 @@
+using DotNetSelenium.Pages;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Edge;
@@ -62,6 +63,18 @@ namespace DotNetSelenium
         }
 
         [Test]
+        public void TestWithPOM()
+        {
+            var driver = new ChromeDriver();
+            driver.Navigate().GoToUrl("http://eaapp.somee.com");
+            LoginPage loginPage = new LoginPage(driver);
+
+            loginPage.ClickLogin();
+            loginPage.Login("admin", "password");
+        }
+
+
+        [Test]
         public void websiteLoginTestReducedSizeCode()
         {
             IWebDriver driver = new ChromeDriver();
@@ -117,6 +130,8 @@ namespace DotNetSelenium
 
             IWebElement loginlink = driver.FindElement(By.Id("loginLink"));
             loginlink.Click();
+
+            driver.Quit();
 
             //Instead of these 2 lines can use following 1 line which is used in a UnitTestUsingCustomMethod
 

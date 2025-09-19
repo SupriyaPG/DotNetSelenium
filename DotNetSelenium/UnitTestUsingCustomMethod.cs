@@ -56,6 +56,8 @@ namespace DotNetSelenium
              } */
             //ne w code for foreach loop is
             list.ForEach(Console.WriteLine);  //just one line code
+
+            driver.Quit();
         }
     }
 }
