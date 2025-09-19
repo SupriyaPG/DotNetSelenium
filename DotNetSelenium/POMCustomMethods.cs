@@ -52,7 +52,7 @@ namespace DotNetSelenium
             }
         }
 
-        public static List<string> GetAllSelectedLists(IWebElement driver, By locator)
+        public static List<string> GetAllSelectedLists(IWebElement locator)
         {
             List<string> result = new List<string>();
             SelectElement multiSelect = new SelectElement(locator);

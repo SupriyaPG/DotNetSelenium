@@ -62,17 +62,6 @@ namespace DotNetSelenium
 
         }
 
-        [Test]
-        public void TestWithPOM()
-        {
-            var driver = new ChromeDriver();
-            driver.Navigate().GoToUrl("http://eaapp.somee.com");
-            LoginPage loginPage = new LoginPage(driver);
-
-            loginPage.ClickLogin();
-            loginPage.Login("admin", "password");
-        }
-
 
         [Test]
         public void websiteLoginTestReducedSizeCode()
