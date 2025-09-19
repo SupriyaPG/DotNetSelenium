@@ -1,10 +1,5 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetSelenium.Pages
 {
@@ -13,8 +8,8 @@ namespace DotNetSelenium.Pages
         private readonly IWebDriver driver;
 
         public TestFormPage(IWebDriver driver)
-        {  
-            this.driver = driver; 
+        {
+            this.driver = driver;
         }
 
         IWebElement gendorElement => driver.FindElement(By.Id("gender"));
@@ -28,10 +23,10 @@ namespace DotNetSelenium.Pages
             IWebElement webElement = selectElement.SelectedOption;
             Console.WriteLine(webElement.Text);
 
-            
+
         }
 
-        
+
         public void SelectedContinant()
         {
             SelectElement selectMultiElement = new SelectElement(continentElement);
