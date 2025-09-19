@@ -12,20 +12,23 @@ namespace DotNetSelenium.Pages
         }
 
         IWebElement LoginLink => driver.FindElement(By.Id("loginLink"));
-        IWebElement TxtUser => driver.FindElement(By.Id("UserName")); 
+        IWebElement TxtUserNmae => driver.FindElement(By.Id("UserName")); 
         IWebElement TxtPassword=>driver.FindElement(By.Id("Password"));
         IWebElement BtnLogin => driver.FindElement(By.CssSelector(".btn"));
 
 
         public void ClickLogin()
         {
-           LoginLink.Click();
+            // LoginLink.Click();
+            POMCustomMethods.Click(LoginLink);
         }                                                 
         public void Login(string username, string password)                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                         
         {
-            TxtUser.SendKeys(username);
-            TxtPassword.SendKeys(password);
-            BtnLogin.Submit();                                                                                                                       
+            // TxtUserName.SendKeys(username);
+            POMCustomMethods.EnterText(TxtUserNmae,username);
+            //TxtPassword.SendKeys(password);
+            POMCustomMethods.EnterText(TxtPassword,password);
+            POMCustomMethods.Submit(BtnLogin);                                                                                                                       
         }
     }
 }
