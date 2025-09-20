@@ -1,33 +1,33 @@
 ﻿using OpenQA.Selenium;
-using OpenQA.Selenium.BiDi.BrowsingContext;
 using OpenQA.Selenium.Support.UI;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace DotNetSelenium
 {
-    public class POMCustomMethods
+    // public class POMCustomMethods
+    public static class POMCustomMethods //for extension method class should be static
     {
-        public static void Click(IWebElement locator)
+        //Method should get locator
+        //start getting the type of identifier
+        //perform operations on locator
+
+        public static void ClickElement(this IWebElement locator)
         {
             locator.Click();
         }
 
-        public static void Submit(IWebElement locator)
+
+        public static void SubmitElement(this IWebElement locator)
         {
             locator.Submit();
         }
-       
-        public static void EnterText(IWebElement locator, string text)
+
+        public static void EnterText(this IWebElement locator, string text)
         {
             locator.Clear();
             locator.SendKeys(text);
         }
 
-        public static void SelectDropDownByText(IWebElement locator, string text)
+        public static void SelectDropDownByText(this IWebElement locator, string text)
         {
             SelectElement selectElement = new SelectElement(locator);
             selectElement.SelectByText(text);
@@ -35,13 +35,13 @@ namespace DotNetSelenium
             Console.WriteLine(webElement.Text);
         }
 
-        public static void SelectDropDownByValue(IWebElement locator, string value)
+        public static void SelectDropDownByValue(this IWebElement locator, string value)
         {
             SelectElement selectElement = new SelectElement(locator);
             selectElement.SelectByValue(value);
         }
 
-        public static void SelectMultiDropDown(IWebElement locator, String[] Values)
+        public static void SelectMultiDropDown(this IWebElement locator, String[] Values)
         {
             SelectElement selectMultiElement = new SelectElement(locator);
             //selectMultiElement.SelectByText(Array);
@@ -52,7 +52,7 @@ namespace DotNetSelenium
             }
         }
 
-        public static List<string> GetAllSelectedLists(IWebElement locator)
+        public static List<string> GetAllSelectedLists(this IWebElement locator)
         {
             List<string> result = new List<string>();
             SelectElement multiSelect = new SelectElement(locator);

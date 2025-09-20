@@ -14,6 +14,8 @@ namespace DotNetSelenium.Pages
 
         IWebElement gendorElement => driver.FindElement(By.Id("gender"));
         IWebElement continentElement => driver.FindElement(By.Id("continent"));
+
+
         public void GendorDropDown(string gendor)
         {
             SelectElement selectElement = new SelectElement(gendorElement);
